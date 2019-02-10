@@ -1,3 +1,4 @@
 # Parsing using flex and bison
 
-Let's get started!
+Run the `build` script to autogenerate a `gcode_reader` object
+then parse the text using `$ .\gcode_reader`

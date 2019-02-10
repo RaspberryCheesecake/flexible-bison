@@ -1,3 +1,5 @@
 lex.yy.c
 gcode_reader
 *.o
+*.tab.c
+*.tab.h

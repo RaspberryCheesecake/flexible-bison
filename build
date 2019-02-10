@@ -2,6 +2,8 @@
 
 # Script to automate the autogeneration process
 
+bison -d -t gcode.y  # Make the tokeniser using grammar in .y file
+
 flex -d gcode.l  # Make the lexer using rule in .l file
 
-g++ lex.yy.c -lfl -o gcode_reader  # Compile the results
+g++ gcode.tab.c lex.yy.c -lfl -o gcode_reader  # Compile the results
