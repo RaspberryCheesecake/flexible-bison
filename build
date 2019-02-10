@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# Script to automate the autogeneration process
+
+flex -d gcode.l  # Make the lexer using rule in .l file
+
+g++ lex.yy.c -lfl -o gcode_reader  # Compile the results
