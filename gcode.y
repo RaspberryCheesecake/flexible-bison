@@ -43,6 +43,15 @@ gcode:
 	}
 
 body:
+	bodylines
+	;
+	
+bodylines:
+	bodylines bodyline  // ie there could be many or just one of these
+	| bodyline
+	;
+	
+bodyline:	
 	FLOAT {
 		cout << "Found float: " << $1 << endl;
 	}

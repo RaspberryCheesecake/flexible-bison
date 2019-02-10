@@ -9,7 +9,17 @@
 
 %%
 
-[\n]				{ ++nCurrentLine; }
+[\n]				{ ++nCurrentLine; }  // don't return a token
+[a-zA-Z]+			{
+	// A bit more complex: we must strdup yytext because Flex will
+	// change it for the next token ('look ahead')
+	// Note this memory use has to be freed somewhere
+	// That's why we call free() in the Bison file
+	// We use free instead of delete because strdup is a C func
+	// which uses malloc, not a C++ function that uses new
+	yylval.sval = strdup(yytext);
+	return STRING;
+}
 [0-9]+				{ yylval.ival = atoi(yytext); return INT; }
 [0-9]+\[0-9]+		{ yylval.fval = atof(yytext); return FLOAT; }
 M30					{ return END; }
